@@ -35,7 +35,7 @@ export default buildConfig({
                 name: 'car',
                 type: 'relationship',
                 relationTo: 'cars',
-              }, 
+              },
               {
                 name: 'type',
                 type: 'radio',
@@ -54,13 +54,35 @@ export default buildConfig({
             ],
           },
         ],
+        inlineBlocks: [
+          {
+            slug: 'carPrice',
+            admin: {
+              components: {
+                Label: '/components/CarPriceLabel',
+              },
+            },
+            fields: [
+              {
+                name: 'car',
+                type: 'relationship',
+                relationTo: 'cars',
+              },
+              {
+                name: 'price',
+                type: 'number',
+                required: true,
+              },
+            ],
+          },
+        ],
       }),
     ],
   }),
-      secret: process.env.PAYLOAD_SECRET || '',
-      typescript: {
-        outputFile: path.resolve(dirname, 'payload-types.ts'),
-        },
+  secret: process.env.PAYLOAD_SECRET || '',
+  typescript: {
+    outputFile: path.resolve(dirname, 'payload-types.ts'),
+  },
   db: sqliteAdapter({
     client: {
       url: process.env.DATABASE_URI || '',
