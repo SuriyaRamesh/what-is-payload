@@ -5,6 +5,14 @@ export const Cars: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
   },
+  hooks: {
+    afterRead: [
+      ({ doc }) => {
+        doc.doILikeIt = doc.title.includes('Vantage')
+        return doc
+      }
+    ]
+  },
   fields: [
     {
       name: 'title',
