@@ -75,11 +75,7 @@ export interface Config {
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  collectionsJoins: {
-    manufacturers: {
-      cars: 'cars';
-    };
-  };
+  collectionsJoins: {};
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
@@ -163,6 +159,24 @@ export interface Media {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
+  sizes?: {
+    thumbnail?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    banner?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -172,7 +186,6 @@ export interface Car {
   id: number;
   title?: string | null;
   featuredImage?: (number | null) | Media;
-  manufacturer?: (number | null) | Manufacturer;
   updatedAt: string;
   createdAt: string;
 }
@@ -184,11 +197,6 @@ export interface Manufacturer {
   id: number;
   title?: string | null;
   logo?: (number | null) | Media;
-  cars?: {
-    docs?: (number | Car)[];
-    hasNextPage?: boolean;
-    totalDocs?: number;
-  };
   updatedAt: string;
   createdAt: string;
 }
@@ -296,6 +304,30 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+  sizes?:
+    | T
+    | {
+        thumbnail?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        banner?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -304,7 +336,6 @@ export interface MediaSelect<T extends boolean = true> {
 export interface CarsSelect<T extends boolean = true> {
   title?: T;
   featuredImage?: T;
-  manufacturer?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -315,7 +346,6 @@ export interface CarsSelect<T extends boolean = true> {
 export interface ManufacturersSelect<T extends boolean = true> {
   title?: T;
   logo?: T;
-  cars?: T;
   updatedAt?: T;
   createdAt?: T;
 }
