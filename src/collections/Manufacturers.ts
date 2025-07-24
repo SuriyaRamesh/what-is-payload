@@ -1,4 +1,4 @@
-import { CollectionConfig } from 'payload';
+import { CollectionConfig } from 'payload'
 
 export const Manufacturers: CollectionConfig = {
   slug: 'manufacturers',
@@ -15,11 +15,11 @@ export const Manufacturers: CollectionConfig = {
       type: 'upload',
       relationTo: 'media',
     },
-    {
-      name: 'cars',
-      type: 'join',
-      on: 'manufacturer',
-      collection: 'cars',
-    }
+    // {
+    //   name: 'cars',
+    //   type: 'join',
+    //   on: 'manufacturer',
+    //   collection: 'cars',
+    // }
   ],
 }

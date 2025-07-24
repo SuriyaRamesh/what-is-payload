@@ -16,9 +16,13 @@ export const Cars: CollectionConfig = {
       relationTo: 'media',
     },
     {
-      name: 'manufacturer',
-      type: 'relationship',
-      relationTo: 'manufacturers',
-    }
+      name: 'content',
+      type: 'richText',
+    },
+    // {
+    //   name: 'manufacturer',
+    //   type: 'relationship',
+    //   relationTo: 'manufacturers',
+    // }
   ],
 }
